@@ -1,0 +1,37 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RealStatesApp.PropertiesPage"
+             xmlns:vm="clr-namespace:RealStatesApp.ViewModels">
+
+    <!--<ContentPage.BindingContext>
+        <vm:PropertiesViewModel/>
+    </ContentPage.BindingContext>-->
+
+    <VerticalStackLayout Spacing="25" Padding="30">
+        <Picker Title="Select Office"
+                ItemsSource="{Binding Offices}"
+                ItemDisplayBinding="{Binding OfficeName}"
+                SelectedItem="{Binding SelectedOffice}"/>
+        <Grid Padding="10" RowDefinitions="Auto" ColumnDefinitions="*, *, *, *, *">
+            <Label Text="Price" Grid.Column="0" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="Status" Grid.Column="1" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="Bedrooms" Grid.Column="2" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="Bathrooms" Grid.Column="3" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="City" Grid.Column="4" Style="{StaticResource HeaderLabelStyle}"/>
+        </Grid>
+
+        <CollectionView ItemsSource="{Binding Properties}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" RowDefinitions="Auto, Auto" ColumnDefinitions="*, *, *,*,*">
+                        <Label Text="{Binding ListPrice, StringFormat='Price: {0:C}'}" Grid.Column="0"/>
+                        <Label Text="{Binding Status, StringFormat='{0} '}" Grid.Column="1"/>
+                        <Label Text="{Binding NoBedrooms, StringFormat='{0} '}" Grid.Column="2"/>
+                        <Label Text="{Binding NoOfBathrooms, StringFormat='{0} '}" Grid.Column="3"/>
+                        <Label Text="{Binding City, StringFormat='{0} '}" Grid.Column="4"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
