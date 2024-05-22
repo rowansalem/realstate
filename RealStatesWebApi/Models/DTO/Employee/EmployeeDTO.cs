@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Models.DTO
 {
-    public class OwnerDTO: BaseDTO
+    public class EmployeeDTO: BaseDTO
     {
         public string? EmpFirstName { get; set; }
         public string? EmpLastName { get; set; }

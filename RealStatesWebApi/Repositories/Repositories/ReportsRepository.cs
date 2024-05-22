@@ -1,6 +1,7 @@
 ﻿using Data;
 using Microsoft.EntityFrameworkCore;
 using Models.DTO;
+using Models.Entity;
 using Repositories.Contracts;
 using System;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ namespace Repositories
                 .Select(office => new EmployeesByOfficeDTO
                 {
                     OfficeName = office.SalesOfficeName,
-                    Employees = office.Employees.Select(e => new OwnerDTO
+                    Employees = office.Employees.Select(e => new EmployeeDTO
                     {
                         EmpFirstName = e.EmpFirstName,
                         EmpLastName  = e.EmpLastName,

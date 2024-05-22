@@ -5,7 +5,7 @@ using Models.Entity;
 
 namespace Mappers
 {
-    public interface IEmployeeMapper : IBaseMapper<Employee, EmployeeDTO>
+    public interface IOwnerMapper : IBaseMapper<Owner, OwnerDTO>
     {
     }
 }

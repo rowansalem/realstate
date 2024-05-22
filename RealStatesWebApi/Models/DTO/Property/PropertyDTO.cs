@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace Models.DTO
 {
     
-    public class PropertyDTO
+    public class PropertyDTO : BaseDTO
     {
         public Guid PropertyID { get; set; }
         public decimal ListPrice { get; set; }

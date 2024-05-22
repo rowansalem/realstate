@@ -8,7 +8,7 @@ using Repositories;
 
 namespace Services
 {
-    public class EmployeeService : BaseService<Employee, OwnerDTO>, IEmployeeService
+    public class EmployeeService : BaseService<Employee, EmployeeDTO>, IEmployeeService
     {
         public EmployeeService(IEmployeeRepository repository, IEmployeeMapper mapper, IUnitOfWork unitOfWork) : base(repository, mapper, unitOfWork)
         {

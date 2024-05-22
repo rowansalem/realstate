@@ -1,5 +1,7 @@
-﻿using Models.DTO;
+﻿using Data.Infrastructure.Services;
+using Models.DTO;
 using Models.DTO.SalesOffice;
+using Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public interface ISalesOfficeService
+    public interface ISalesOfficeService : IService<SalesOffice, SalesOfficeDTO>
     {
-        Task<List<GetOfficeListResponse>> GetOfficesAsync();
+        Task<List<SalesOfficeDTO>> GetOfficesAsync();
     }
 }

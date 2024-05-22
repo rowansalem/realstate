@@ -5,7 +5,7 @@ using Models.Entity;
 
 namespace Services
 {
-    public interface IEmployeeService : IService<Employee, EmployeeDTO>
+    public interface IPropertyService : IService<Property, PropertyDTO>
     {
     }
 }

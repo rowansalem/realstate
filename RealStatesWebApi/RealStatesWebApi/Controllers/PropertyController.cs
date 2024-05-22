@@ -12,12 +12,12 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     [EnableCors("AllowAllOrigins")]
     [Produces("application/json")]
-    public class EmployeeController : ControllerBase
+    public class PropertyController : ControllerBase
     {
         #region props and ctot
-        private readonly IEmployeeService _employeeService;
-        private readonly IValidator<EmployeeDTO> _employeeValidator;
-        public EmployeeController(IEmployeeService employeeService,  IValidator<EmployeeDTO> employeeValidator)
+        private readonly IPropertyService _employeeService;
+        private readonly IValidator<PropertyDTO> _employeeValidator;
+        public PropertyController(IPropertyService employeeService,  IValidator<PropertyDTO> employeeValidator)
         {
             _employeeService = employeeService;
             _employeeValidator = employeeValidator;
@@ -25,35 +25,35 @@ namespace WebApi.Controllers
         #endregion
 
         #region CRUD
-        // GET api/Employee
+        // GET api/Property
         [HttpGet]
-        public ActionResult GetEmployees()
+        public ActionResult GetPropertys()
         {
-            List<EmployeeDTO> employees = _employeeService.GetAll().ToList();
-            ApiResult<EmployeeDTO> result = ApiResult<EmployeeDTO>.Success(employees);
+            List<PropertyDTO> employees = _employeeService.GetAll().ToList();
+            ApiResult<PropertyDTO> result = ApiResult<PropertyDTO>.Success(employees);
             return Ok(result);
         }
 
-        // GET api/Employee/5
+        // GET api/Property/5
         [HttpGet("{id}")]
-        public IActionResult GetEmployee(Guid id)
+        public IActionResult GetProperty(Guid id)
         {
-            EmployeeDTO employee = _employeeService.GetById(id);
-            ApiResult<EmployeeDTO> result = ApiResult<EmployeeDTO>.Success(employee);
+            PropertyDTO employee = _employeeService.GetById(id);
+            ApiResult<PropertyDTO> result = ApiResult<PropertyDTO>.Success(employee);
             return Ok(result);
         }
 
-        // POST api/Employee/filtered-list
+        // POST api/Property/filtered-list
         [HttpPost("filtered-list")]
-        public ActionResult GetFilteredEmployee([FromBody] FilterModel<EmployeeDTO> filter)
+        public ActionResult GetFilteredProperty([FromBody] FilterModel<PropertyDTO> filter)
         {
-            ApiPaginationResult<EmployeeDTO> employees = _employeeService.GetAllPaged(filter);
+            ApiPaginationResult<PropertyDTO> employees = _employeeService.GetAllPaged(filter);
             return Ok(employees);
         }
 
-        // POST api/Employee
+        // POST api/Property
         [HttpPost]
-        public ActionResult PostEmployee([FromBody] EmployeeDTO employee)
+        public ActionResult PostProperty([FromBody] PropertyDTO employee)
         {
             ValidationResult validationResult = _employeeValidator.Validate(employee);
             if (!validationResult.IsValid)
@@ -64,15 +64,15 @@ namespace WebApi.Controllers
             _employeeService.Create(employee);
             _employeeService.SaveChanges();
 
-            string message = "Employee Created Successfully";
-            ApiResult<EmployeeDTO> result = ApiResult<EmployeeDTO>.Success(employee, message);
+            string message = "Property Created Successfully";
+            ApiResult<PropertyDTO> result = ApiResult<PropertyDTO>.Success(employee, message);
             return Ok(result);
         }
 
 
-        // PUT api/Employee/5
+        // PUT api/Property/5
         [HttpPut("{id}")]
-        public ActionResult PutEmployee(Guid id, [FromBody] EmployeeDTO employee)
+        public ActionResult PutProperty(Guid id, [FromBody] PropertyDTO employee)
         {
             ValidationResult validationResult = _employeeValidator.Validate(employee);
             if (!validationResult.IsValid)
@@ -88,20 +88,20 @@ namespace WebApi.Controllers
             _employeeService.Update(id, employee);
             _employeeService.SaveChanges();
 
-            string message = "Employee Updated Successfully";
-            ApiResult<EmployeeDTO> result = ApiResult<EmployeeDTO>.Success(message);
+            string message = "Property Updated Successfully";
+            ApiResult<PropertyDTO> result = ApiResult<PropertyDTO>.Success(message);
             return Ok(result);
         }
 
-        // DELETE api/Employee/5
+        // DELETE api/Property/5
         [HttpDelete("{id}")]
-        public ActionResult DeleteEmployee(Guid id)
+        public ActionResult DeleteProperty(Guid id)
         {
             _employeeService.Delete(id);
             _employeeService.SaveChanges();
 
-            string message = "Employee Deleted Successfully";
-            ApiResult<EmployeeDTO> result = ApiResult<EmployeeDTO>.Success(message);
+            string message = "Property Deleted Successfully";
+            ApiResult<PropertyDTO> result = ApiResult<PropertyDTO>.Success(message);
             return Ok(result);
         }
         #endregion
