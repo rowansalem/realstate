@@ -3,7 +3,7 @@ using Models.DTO;
 
 namespace Models.Validators
 {
-    public class EmployeeDTOValidator : AbstractValidator<AddressDTO>
+    public class EmployeeDTOValidator : AbstractValidator<OwnerDTO>
     {
         public EmployeeDTOValidator()
         {

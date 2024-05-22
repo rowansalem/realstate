@@ -54,7 +54,6 @@ namespace WebApi.Controllers
         [SwaggerOperation(Summary = "Gets an address by ID", Description = "Returns an address DTO by the specified ID.")]
         [SwaggerResponse(200, "Returns the address DTO", typeof(ApiResult<AddressDTO>))]
         [SwaggerResponse(404, "If the address is not found")]
-        [HttpGet("{id}")]
         public IActionResult GetAddress(Guid id)
         {
             AddressDTO address = _addressService.GetById(id);

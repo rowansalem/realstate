@@ -7,9 +7,9 @@ namespace Mappers
 {
     public class EmployeeMapper : IEmployeeMapper
     {
-        AddressDTO IBaseMapper<Employee, AddressDTO>.MapToDTO(Employee source)
+        OwnerDTO IBaseMapper<Employee, OwnerDTO>.MapToDTO(Employee source)
         {
-            AddressDTO employeeDTO = new AddressDTO();
+            OwnerDTO employeeDTO = new OwnerDTO();
             employeeDTO.Id = source.Id;
             employeeDTO.EmpFirstName = source.EmpFirstName;
             employeeDTO.EmpLastName = source.EmpLastName;
@@ -23,7 +23,7 @@ namespace Mappers
             return employeeDTO;
         }
 
-        Employee IBaseMapper<Employee, AddressDTO>.MapToEntity(AddressDTO source)
+        Employee IBaseMapper<Employee, OwnerDTO>.MapToEntity(OwnerDTO source)
         {
             Employee employee = new Employee();
             employee.Id = source.Id;

@@ -9,6 +9,6 @@ namespace Models.DTO
     public class EmployeesByOfficeDTO
     {
         public string OfficeName { get; set; }
-        public List<AddressDTO> Employees { get; set; }
+        public List<OwnerDTO> Employees { get; set; }
     }
 }
