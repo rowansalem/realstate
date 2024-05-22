@@ -64,6 +64,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="EmployeesListPage.xaml.cs">
+	    <DependentUpon>EmployeesListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="OfficesPage.xaml.cs">
 	    <DependentUpon>OfficesPage.xaml</DependentUpon>
 	  </Compile>
@@ -73,9 +76,15 @@
 	  <Compile Update="PropertiesPage.xaml.cs">
 	    <DependentUpon>PropertiesPage.xaml</DependentUpon>
 	  </Compile>
+		<Compile Update="EmployeesListPage.xaml.cs">
+	    <DependentUpon>EmployeesListPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="EmployeesListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="OfficesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

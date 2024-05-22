@@ -14,6 +14,9 @@ namespace RealStatesApp.ViewModels
     public class EmployeesViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<EmployeeDTO> Employees { get; } = new();
+        private List<EmployeeDTO> _employeesList;
+        private readonly IEmployeesService _employeeService;
+
 
         private readonly IRealEstateService _realEstateService;
         private GetOfficeListResponse _selectedOffice;
@@ -31,12 +34,31 @@ namespace RealStatesApp.ViewModels
                 }
             }
         }
-        public EmployeesViewModel(IRealEstateService realEstateService)
+        public EmployeesViewModel(IRealEstateService realEstateService, IEmployeesService employeeService)
         {
+            _employeeService = employeeService;
             _realEstateService = realEstateService;
             LoadOfficesAsync();
+            LoadEmployees();
 
         }
+
+        public List<EmployeeDTO> EmployeesList
+        {
+            get => _employeesList;
+            set
+            {
+                _employeesList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private async void LoadEmployees()
+        {
+            EmployeesList = await _employeeService.GetEmployeesAsync();
+        }
+
+
         private async void LoadOfficesAsync()
         {
             var offices = await _realEstateService.GetOfficesAsync();

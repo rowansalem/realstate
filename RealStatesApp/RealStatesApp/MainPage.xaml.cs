@@ -1,4 +1,5 @@
 ﻿
+
 namespace RealStatesApp
 {
     public partial class MainPage : ContentPage
@@ -29,6 +30,14 @@ namespace RealStatesApp
             await Shell.Current.GoToAsync(nameof(OfficesPage));
 
             SemanticScreenReader.Announce(OfficesBtn.Text);
+
+        }
+
+        private async void OnEmployeesListClickedAsync(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(EmployeesListPage));
+
+            SemanticScreenReader.Announce(EmployeesListBtn.Text);
 
         }
     }

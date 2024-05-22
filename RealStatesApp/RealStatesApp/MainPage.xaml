@@ -31,6 +31,12 @@
                 SemanticProperties.Hint=""
                 Clicked="OnOfficesClickedAsync"
                 HorizontalOptions="Fill" />
+            <Button
+                x:Name="EmployeesListBtn"
+                Text="Employees Crud" 
+                SemanticProperties.Hint=""
+                Clicked="OnEmployeesListClickedAsync"
+                HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 
