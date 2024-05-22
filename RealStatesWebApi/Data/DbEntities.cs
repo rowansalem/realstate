@@ -43,9 +43,9 @@ namespace Data
             builder.Entity<IdentityUserClaim<Guid>>().HasKey(c => c.Id);
 
             builder.Entity<SalesOffice>()
-                 .HasOne(s => s.Manager)
-                 .WithOne()
-                 .HasForeignKey<SalesOffice>(s => s.ManagedByEmployeeId);
+                .HasOne(s => s.Manager)
+                .WithOne()
+                .HasForeignKey<SalesOffice>(s => s.ManagedByEmployeeId);
 
             builder.Entity<SalesOffice>()
                 .HasMany(s => s.Employees)

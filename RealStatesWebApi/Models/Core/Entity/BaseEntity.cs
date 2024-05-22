@@ -1,4 +1,4 @@
-﻿namespace Models.Entity
+﻿namespace Models.Core
 {
     public class BaseEntity
     {
@@ -7,6 +7,7 @@
         public DateTime? ModifiedAt { get; set; }
         public Guid? CreatedBy { get; set; }
         public Guid? ModifiedBy { get; set; }
+        public bool IsDeleted { get; set; }
 
     }
 }

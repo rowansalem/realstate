@@ -1,4 +1,5 @@
-﻿using Models.Entity;
+﻿using Models.Core;
+using Models.Entity;
 
 namespace Data
 {

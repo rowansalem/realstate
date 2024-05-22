@@ -64,9 +64,10 @@ namespace Repositories
                 .Select(office => new EmployeesByOfficeDTO
                 {
                     OfficeName = office.SalesOfficeName,
-                    Employees = office.Employees.Select(e => new EmployeeDTO
+                    Employees = office.Employees.Select(e => new AddressDTO
                     {
-                        EmployeeName = e.EmpFirstName + " " + e.EmpLastName,
+                        EmpFirstName = e.EmpFirstName,
+                        EmpLastName  = e.EmpLastName,
                         DateOfBirth = e.DateOfBirth,
                         Age = e.Age
                     }).ToList()

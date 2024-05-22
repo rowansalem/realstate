@@ -1,4 +1,5 @@
 ﻿using Data.Infrastructure.Exceptions;
+using Models.Core;
 using Models.DTO;
 using Newtonsoft.Json;
 using System.Net;
@@ -35,7 +36,7 @@ namespace RealStatesWebApi
 
             if (exception is EntityNotFoundException) code = HttpStatusCode.NotFound; // 404
                                                                                 
-            var result = JsonConvert.SerializeObject(ApiResponse<BaseDTO>.Error(exception.Message));
+            var result = JsonConvert.SerializeObject(ApiResult<BaseDTO>.Error(exception.Message));
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
             return context.Response.WriteAsync(result);

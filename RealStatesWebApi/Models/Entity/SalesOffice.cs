@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Models.Core;
+using System.Net;
 
 namespace Models.Entity
 {

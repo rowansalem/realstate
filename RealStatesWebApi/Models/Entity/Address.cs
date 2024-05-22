@@ -1,4 +1,6 @@
-﻿namespace Models.Entity
+﻿using Models.Core;
+
+namespace Models.Entity
 {
     public class Address : BaseEntity
     {
