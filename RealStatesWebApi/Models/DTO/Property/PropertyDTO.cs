@@ -1,4 +1,5 @@
 ﻿using Models.Core;
+using Models.DTO.SalesOffice;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,10 @@ namespace Models.DTO
         public int NoBedrooms { get; set; }
         public int NoOfBathrooms { get; set; }
         public string City { get; set; }
+
+        public List<Guid>? OwnersId { get; set; }
+        public List<OwnerDTO>? PropertyOwners { get; set; }
+
+        public SalesOfficeDTO? SalesOffice { get; set; }
     }
 }

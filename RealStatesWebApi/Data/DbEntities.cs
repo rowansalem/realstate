@@ -52,6 +52,16 @@ namespace Data
                 .WithOne(e => e.SalesOffice)
                 .HasForeignKey(e => e.SalesOfficeId);
 
+            builder.Entity<Property>()
+                  .HasMany(p => p.PropertyOwners)
+                  .WithOne(po => po.Property)
+                  .HasForeignKey(po => po.PropertyId);
+
+            builder.Entity<Owner>()
+                .HasMany(o => o.PropertyOwners)
+                .WithOne(po => po.Owner)
+                .HasForeignKey(po => po.OwnerId);
+
             // Seed data for Address
             builder.Entity<Address>().HasData(
                 new Address { Id = Guid.Parse("417fa29a-5a30-487d-a994-dd3d3060f021"), AddressLine = "123 Main St", City = "Texas City", State = "Texas", ZipCode = "12345" },

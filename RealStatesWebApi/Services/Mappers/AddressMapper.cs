@@ -23,6 +23,11 @@ namespace Mappers
         {
             Address address = new Address();
             address.Id = source.Id;
+            address.AddressLine = source.AddressLine;
+            address.City = source.City;
+            address.ZipCode = source.ZipCode;
+            address.State = source.State;
+            address.Timestamp = source.Timestamp;
             return address;
         }
     }

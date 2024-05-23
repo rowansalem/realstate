@@ -29,7 +29,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public ActionResult GetPropertys()
         {
-            List<PropertyDTO> employees = _employeeService.GetAll().ToList();
+            List<PropertyDTO> employees = _employeeService.GetAll(null, ["PropertyOwners", "PropertyOwners.Owner"]).ToList();
             ApiResult<PropertyDTO> result = ApiResult<PropertyDTO>.Success(employees);
             return Ok(result);
         }

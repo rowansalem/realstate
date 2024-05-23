@@ -48,7 +48,12 @@ builder.Services.AddDbContextPool<Data.DbEntities>(
 ConfigureService.RegisterRepositories(builder.Services);
 ConfigureService.RegisterServices(builder.Services);
 ConfigureService.RegisterMappers(builder.Services);
+
 builder.Services.AddScoped<IValidator<EmployeeDTO>, EmployeeDTOValidator>();
+builder.Services.AddScoped<IValidator<OwnerDTO>, OwnerDTOValidator>();
+builder.Services.AddScoped<IValidator<AddressDTO>, AddressDTOValidator>();
+builder.Services.AddScoped<IValidator<PropertyDTO>, PropertyDTOValidator>();
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 

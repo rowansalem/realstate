@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Models.Core;
 using Models.DTO;
+using Models.Entity;
 using Services;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -38,7 +39,7 @@ namespace WebApi.Controllers
         [SwaggerResponse(500, "If there is an internal server error")]
         public ActionResult GetOwners()
         {
-            List<OwnerDTO> owners = _ownerService.GetAll().ToList();
+            List<OwnerDTO> owners = _ownerService.GetAll(null,["PropertyOwners", "PropertyOwners.Property"]).ToList();
             ApiResult<OwnerDTO> result = ApiResult<OwnerDTO>.Success(owners);
             return Ok(result);
         }
@@ -56,7 +57,7 @@ namespace WebApi.Controllers
         [SwaggerResponse(404, "If the owner is not found")]
         public IActionResult GetOwner(Guid id)
         {
-            OwnerDTO owner = _ownerService.GetById(id);
+            OwnerDTO owner = _ownerService.GetById(id, ["PropertyOwners", "PropertyOwners.Property"]);
             ApiResult<OwnerDTO> result = ApiResult<OwnerDTO>.Success(owner);
             return Ok(result);
         }

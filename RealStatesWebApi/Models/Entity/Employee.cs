@@ -1,4 +1,5 @@
 ﻿using Models.Core;
+using System.Collections.ObjectModel;
 using System.Net;
 
 namespace Models.Entity
@@ -12,6 +13,8 @@ namespace Models.Entity
         public DateTime DateOfBirth { get; set; }
         public int Age { get; set; }
         public DateTime Timestamp { get; set; }
+
+        public Collection<SalesOffice> ManagedSalesOffices{ get; set; }
     }
 
 
