@@ -10,7 +10,7 @@ namespace Models.DTO
         public Guid? SalesOfficeId { get; set; }
         public  string? SalesOfficeName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public int Age { get; set; }
+        public int? Age { get; set; }
         public DateTime Timestamp { get; set; }
     }
 

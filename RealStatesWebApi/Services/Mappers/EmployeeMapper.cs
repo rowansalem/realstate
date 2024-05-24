@@ -14,7 +14,7 @@ namespace Mappers
             employeeDTO.EmpFirstName = source.EmpFirstName;
             employeeDTO.EmpLastName = source.EmpLastName;
             employeeDTO.DateOfBirth = source.DateOfBirth;
-            employeeDTO.Age = source.Age;
+            employeeDTO.Age = CalculateAge(source.DateOfBirth);
             employeeDTO.SalesOfficeId = source.SalesOfficeId;
             if (source.SalesOffice != null)
             {
@@ -30,9 +30,19 @@ namespace Mappers
             employee.EmpFirstName = source.EmpFirstName;
             employee.EmpLastName = source.EmpLastName;
             employee.DateOfBirth = source.DateOfBirth;
-            employee.Age = source.Age;
+            employee.Age = CalculateAge(source.DateOfBirth);
             employee.SalesOfficeId = source.SalesOfficeId ?? Guid.Empty;
             return employee;
+        }
+
+        private int CalculateAge(DateTime dateOfBirth)
+        {
+            var today = DateTime.Today;
+            var age = today.Year - dateOfBirth.Year;
+
+            if (dateOfBirth.Date > today.AddYears(-age)) age--;
+
+            return age;
         }
     }
 }

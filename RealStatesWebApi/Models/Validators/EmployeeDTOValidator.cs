@@ -21,6 +21,10 @@ namespace Models.Validators
             RuleFor(dto => dto.SalesOfficeId)
                 .NotNull().WithMessage(requiredMessage)
                 .NotEmpty().WithMessage(requiredMessage);
+
+            RuleFor(dto => dto.DateOfBirth)
+                .NotNull().WithMessage(requiredMessage)
+                .NotEmpty().WithMessage(requiredMessage);
         }
     }
 }
