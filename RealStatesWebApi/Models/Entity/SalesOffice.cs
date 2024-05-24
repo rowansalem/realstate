@@ -7,12 +7,12 @@ namespace Models.Entity
     {
         public string SalesOfficeName { get; set; }
         public Guid AddressId { get; set; }
-        public  Address Address { get; set; }
         public Guid ManagedByEmployeeId { get; set; }
-        public  Employee Manager { get; set; }
         public DateTime Timestamp { get; set; }
 
         // Navigation property
+        public  Address Address { get; set; }
+        public  Employee Manager { get; set; }
         public ICollection<Property> Properties { get; set; }
         public ICollection<Employee> Employees { get; set; }
     }

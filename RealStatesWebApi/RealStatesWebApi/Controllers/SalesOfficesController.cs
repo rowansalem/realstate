@@ -47,7 +47,7 @@ namespace RealStatesWebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetProperty(Guid id)
         {
-            SalesOfficeDTO employee = _salesOfficeService.GetById(id);
+            SalesOfficeDTO employee = _salesOfficeService.GetById(id, ["Address", "Manager", "Properties", "Employees"]);
             ApiResult<SalesOfficeDTO> result = ApiResult<SalesOfficeDTO>.Success(employee);
             return Ok(result);
         }
