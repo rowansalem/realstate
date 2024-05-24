@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DbEntities))]
-    partial class DbEntitiesModelSnapshot : ModelSnapshot
+    [Migration("20240524125701_Seed-Data-SalesOffice")]
+    partial class SeedDataSalesOffice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,15 +56,6 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("e354a5cd-5d4a-464e-a356-7cc434c5913d"),
-                            IsDeleted = false,
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserEmail = "user@example.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -372,30 +366,6 @@ namespace Data.Migrations
                     b.HasIndex("SalesOfficeId");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("64d6ee5f-e553-43a8-8c47-d7a9f447c614"),
-                            Age = 40,
-                            DateOfBirth = new DateTime(1980, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EmpFirstName = "John",
-                            EmpLastName = "Doe",
-                            IsDeleted = false,
-                            SalesOfficeId = new Guid("8e56f097-eec5-4b0e-bed5-aa8766212b67"),
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("0197f334-8f09-41f3-8ec8-f94a9d7d63e7"),
-                            Age = 30,
-                            DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EmpFirstName = "Jane",
-                            EmpLastName = "Smith",
-                            IsDeleted = false,
-                            SalesOfficeId = new Guid("028aa2c5-d4a3-4369-ab0b-86b3d74ffb23"),
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Models.Entity.Owner", b =>
@@ -433,16 +403,6 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Owners");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("47a0f14a-b028-403f-8ba3-a1489d8e266e"),
-                            IsDeleted = false,
-                            OwnerFirstName = "Jane",
-                            OwnerLastName = "Smith",
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Models.Entity.Property", b =>
@@ -494,32 +454,6 @@ namespace Data.Migrations
                     b.HasIndex("SalesOfficeId");
 
                     b.ToTable("Properties");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("58fd99d4-3553-4fb4-b1ed-78d9c765a53a"),
-                            City = "Anytown",
-                            IsDeleted = false,
-                            ListPrice = 250000m,
-                            NoOfBathrooms = 2,
-                            NoOfBedrooms = 3,
-                            SalesOfficeId = new Guid("8e56f097-eec5-4b0e-bed5-aa8766212b67"),
-                            Status = "For Sale",
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("958de581-e471-4079-b232-3d6900acfd25"),
-                            City = "Anytown",
-                            IsDeleted = false,
-                            ListPrice = 300000m,
-                            NoOfBathrooms = 3,
-                            NoOfBedrooms = 4,
-                            SalesOfficeId = new Guid("028aa2c5-d4a3-4369-ab0b-86b3d74ffb23"),
-                            Status = "For Sale",
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Models.Entity.PropertyOwner", b =>
@@ -562,26 +496,6 @@ namespace Data.Migrations
                     b.HasIndex("PropertyId");
 
                     b.ToTable("PropertyOwners");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("9247b51c-c626-44bd-b7b8-414a321e1485"),
-                            IsDeleted = false,
-                            OwnerId = new Guid("47a0f14a-b028-403f-8ba3-a1489d8e266e"),
-                            PercentOwned = 100m,
-                            PropertyId = new Guid("58fd99d4-3553-4fb4-b1ed-78d9c765a53a"),
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("4e0c5b04-b174-4230-b39c-5ee6aa966313"),
-                            IsDeleted = false,
-                            OwnerId = new Guid("47a0f14a-b028-403f-8ba3-a1489d8e266e"),
-                            PercentOwned = 100m,
-                            PropertyId = new Guid("958de581-e471-4079-b232-3d6900acfd25"),
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Models.Entity.SalesOffice", b =>
@@ -632,7 +546,6 @@ namespace Data.Migrations
                             Id = new Guid("8e56f097-eec5-4b0e-bed5-aa8766212b67"),
                             AddressId = new Guid("417fa29a-5a30-487d-a994-dd3d3060f021"),
                             IsDeleted = false,
-                            ManagerId = new Guid("64d6ee5f-e553-43a8-8c47-d7a9f447c614"),
                             SalesOfficeName = "Downtown Office",
                             Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -641,7 +554,6 @@ namespace Data.Migrations
                             Id = new Guid("028aa2c5-d4a3-4369-ab0b-86b3d74ffb23"),
                             AddressId = new Guid("4eccc760-57ce-483a-82cd-644caf6d28d9"),
                             IsDeleted = false,
-                            ManagerId = new Guid("64d6ee5f-e553-43a8-8c47-d7a9f447c614"),
                             SalesOfficeName = "New Cairo Office",
                             Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });

@@ -11,7 +11,6 @@ namespace Models.DTO
     
     public class PropertyDTO : BaseDTO
     {
-        public Guid PropertyID { get; set; }
         public decimal ListPrice { get; set; }
         public string Status { get; set; }
         public int NoBedrooms { get; set; }

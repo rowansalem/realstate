@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DbEntities))]
-    partial class DbEntitiesModelSnapshot : ModelSnapshot
+    [Migration("20240524131416_Seed-Data-Owner")]
+    partial class SeedDataOwner
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,15 +56,6 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("e354a5cd-5d4a-464e-a356-7cc434c5913d"),
-                            IsDeleted = false,
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserEmail = "user@example.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -494,32 +488,6 @@ namespace Data.Migrations
                     b.HasIndex("SalesOfficeId");
 
                     b.ToTable("Properties");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("58fd99d4-3553-4fb4-b1ed-78d9c765a53a"),
-                            City = "Anytown",
-                            IsDeleted = false,
-                            ListPrice = 250000m,
-                            NoOfBathrooms = 2,
-                            NoOfBedrooms = 3,
-                            SalesOfficeId = new Guid("8e56f097-eec5-4b0e-bed5-aa8766212b67"),
-                            Status = "For Sale",
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("958de581-e471-4079-b232-3d6900acfd25"),
-                            City = "Anytown",
-                            IsDeleted = false,
-                            ListPrice = 300000m,
-                            NoOfBathrooms = 3,
-                            NoOfBedrooms = 4,
-                            SalesOfficeId = new Guid("028aa2c5-d4a3-4369-ab0b-86b3d74ffb23"),
-                            Status = "For Sale",
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Models.Entity.PropertyOwner", b =>
@@ -562,26 +530,6 @@ namespace Data.Migrations
                     b.HasIndex("PropertyId");
 
                     b.ToTable("PropertyOwners");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("9247b51c-c626-44bd-b7b8-414a321e1485"),
-                            IsDeleted = false,
-                            OwnerId = new Guid("47a0f14a-b028-403f-8ba3-a1489d8e266e"),
-                            PercentOwned = 100m,
-                            PropertyId = new Guid("58fd99d4-3553-4fb4-b1ed-78d9c765a53a"),
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("4e0c5b04-b174-4230-b39c-5ee6aa966313"),
-                            IsDeleted = false,
-                            OwnerId = new Guid("47a0f14a-b028-403f-8ba3-a1489d8e266e"),
-                            PercentOwned = 100m,
-                            PropertyId = new Guid("958de581-e471-4079-b232-3d6900acfd25"),
-                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Models.Entity.SalesOffice", b =>

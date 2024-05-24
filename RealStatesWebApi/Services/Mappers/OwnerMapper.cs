@@ -26,7 +26,6 @@ namespace Mappers
                         NoOfBathrooms = propertyOwner.Property?.NoOfBedrooms ?? 0,
                         NoBedrooms = propertyOwner.Property?.NoOfBedrooms ?? 0,
                         Status = propertyOwner.Property?.Status ?? null,
-                        PropertyID = propertyOwner.PropertyId
                     });
                 }
             }

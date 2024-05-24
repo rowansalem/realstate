@@ -30,7 +30,7 @@ namespace Repositories
                     OfficeName = office.SalesOfficeName,
                     Properties = office.Properties.Select(p => new PropertyDTO
                     {
-                        PropertyID = p.Id,
+                        Id = p.Id,
                         ListPrice = p.ListPrice,
                         Status = p.Status,
                         NoBedrooms = p.NoOfBedrooms,

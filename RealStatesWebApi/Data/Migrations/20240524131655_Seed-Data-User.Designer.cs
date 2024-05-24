@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DbEntities))]
-    [Migration("20240523153151_FixPropertyOwnerRelationForignKey")]
-    partial class FixPropertyOwnerRelationForignKey
+    [Migration("20240524131655_Seed-Data-User")]
+    partial class SeedDataUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -602,13 +602,10 @@ namespace Data.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("EmployeeId")
-                        .HasColumnType("char(36)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<Guid>("ManagedByEmployeeId")
+                    b.Property<Guid?>("ManagerId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("ModifiedAt")
@@ -628,10 +625,7 @@ namespace Data.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ManagedByEmployeeId")
-                        .IsUnique();
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("SalesOffices");
 
@@ -641,7 +635,7 @@ namespace Data.Migrations
                             Id = new Guid("8e56f097-eec5-4b0e-bed5-aa8766212b67"),
                             AddressId = new Guid("417fa29a-5a30-487d-a994-dd3d3060f021"),
                             IsDeleted = false,
-                            ManagedByEmployeeId = new Guid("64d6ee5f-e553-43a8-8c47-d7a9f447c614"),
+                            ManagerId = new Guid("64d6ee5f-e553-43a8-8c47-d7a9f447c614"),
                             SalesOfficeName = "Downtown Office",
                             Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -650,7 +644,7 @@ namespace Data.Migrations
                             Id = new Guid("028aa2c5-d4a3-4369-ab0b-86b3d74ffb23"),
                             AddressId = new Guid("4eccc760-57ce-483a-82cd-644caf6d28d9"),
                             IsDeleted = false,
-                            ManagedByEmployeeId = new Guid("64d6ee5f-e553-43a8-8c47-d7a9f447c614"),
+                            ManagerId = new Guid("64d6ee5f-e553-43a8-8c47-d7a9f447c614"),
                             SalesOfficeName = "New Cairo Office",
                             Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -712,7 +706,7 @@ namespace Data.Migrations
                     b.HasOne("Models.Entity.SalesOffice", "SalesOffice")
                         .WithMany("Employees")
                         .HasForeignKey("SalesOfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("SalesOffice");
@@ -756,15 +750,10 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Entity.Employee", null)
-                        .WithMany("ManagedSalesOffices")
-                        .HasForeignKey("EmployeeId");
-
                     b.HasOne("Models.Entity.Employee", "Manager")
-                        .WithOne()
-                        .HasForeignKey("Models.Entity.SalesOffice", "ManagedByEmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("ManagedSalesOffices")
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Address");
 

@@ -17,7 +17,6 @@ namespace Mappers
             propertyDTO.Status = source.Status;
             propertyDTO.ListPrice = source.ListPrice;
             propertyDTO.City = source.City;
-            propertyDTO.PropertyID = source.Id;
 
             if(source.SalesOffice != null)
             {

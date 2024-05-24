@@ -9,7 +9,6 @@ namespace Models.DTO.SalesOffice
 {
     public class SalesOfficeDTO : BaseDTO
     {
-        public Guid OfficeId { get; set; }
         public string OfficeName { get; set; }
 
         public List<Guid>? EmployeesId { get; set; }

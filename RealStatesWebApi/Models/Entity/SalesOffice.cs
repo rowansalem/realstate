@@ -7,7 +7,7 @@ namespace Models.Entity
     {
         public string SalesOfficeName { get; set; }
         public Guid AddressId { get; set; }
-        public Guid ManagedByEmployeeId { get; set; }
+        public Guid? ManagerId { get; set; }
         public DateTime Timestamp { get; set; }
 
         // Navigation property

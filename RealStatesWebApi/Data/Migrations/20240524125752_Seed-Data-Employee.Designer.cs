@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DbEntities))]
-    [Migration("20240330140937_AddTables")]
-    partial class AddTables
+    [Migration("20240524125752_Seed-Data-Employee")]
+    partial class SeedDataEmployee
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,9 @@ namespace Data.Migrations
 
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("char(36)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime(6)");
@@ -270,6 +273,9 @@ namespace Data.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("char(36)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime(6)");
 
@@ -290,6 +296,28 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("417fa29a-5a30-487d-a994-dd3d3060f021"),
+                            AddressLine = "123 Main St",
+                            City = "Texas City",
+                            IsDeleted = false,
+                            State = "Texas",
+                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ZipCode = "12345"
+                        },
+                        new
+                        {
+                            Id = new Guid("4eccc760-57ce-483a-82cd-644caf6d28d9"),
+                            AddressLine = "123 Victore St",
+                            City = "Alexandria",
+                            IsDeleted = false,
+                            State = "Alex",
+                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ZipCode = "12345"
+                        });
                 });
 
             modelBuilder.Entity("Models.Entity.Employee", b =>
@@ -318,6 +346,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime(6)");
 
@@ -332,10 +363,33 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SalesOfficeId")
-                        .IsUnique();
+                    b.HasIndex("SalesOfficeId");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("64d6ee5f-e553-43a8-8c47-d7a9f447c614"),
+                            Age = 40,
+                            DateOfBirth = new DateTime(1980, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmpFirstName = "John",
+                            EmpLastName = "Doe",
+                            IsDeleted = false,
+                            SalesOfficeId = new Guid("8e56f097-eec5-4b0e-bed5-aa8766212b67"),
+                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("0197f334-8f09-41f3-8ec8-f94a9d7d63e7"),
+                            Age = 30,
+                            DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EmpFirstName = "Jane",
+                            EmpLastName = "Smith",
+                            IsDeleted = false,
+                            SalesOfficeId = new Guid("028aa2c5-d4a3-4369-ab0b-86b3d74ffb23"),
+                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Models.Entity.Owner", b =>
@@ -349,6 +403,9 @@ namespace Data.Migrations
 
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("char(36)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime(6)");
@@ -387,6 +444,9 @@ namespace Data.Migrations
 
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("char(36)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<decimal>("ListPrice")
                         .HasColumnType("decimal(65,30)");
@@ -432,6 +492,9 @@ namespace Data.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("char(36)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime(6)");
 
@@ -474,7 +537,10 @@ namespace Data.Migrations
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("ManagedByEmployeeId")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<Guid?>("ManagerId")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("ModifiedAt")
@@ -494,7 +560,29 @@ namespace Data.Migrations
 
                     b.HasIndex("AddressId");
 
+                    b.HasIndex("ManagerId");
+
                     b.ToTable("SalesOffices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("8e56f097-eec5-4b0e-bed5-aa8766212b67"),
+                            AddressId = new Guid("417fa29a-5a30-487d-a994-dd3d3060f021"),
+                            IsDeleted = false,
+                            ManagerId = new Guid("64d6ee5f-e553-43a8-8c47-d7a9f447c614"),
+                            SalesOfficeName = "Downtown Office",
+                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("028aa2c5-d4a3-4369-ab0b-86b3d74ffb23"),
+                            AddressId = new Guid("4eccc760-57ce-483a-82cd-644caf6d28d9"),
+                            IsDeleted = false,
+                            ManagerId = new Guid("64d6ee5f-e553-43a8-8c47-d7a9f447c614"),
+                            SalesOfficeName = "New Cairo Office",
+                            Timestamp = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -551,9 +639,9 @@ namespace Data.Migrations
             modelBuilder.Entity("Models.Entity.Employee", b =>
                 {
                     b.HasOne("Models.Entity.SalesOffice", "SalesOffice")
-                        .WithOne("Manager")
-                        .HasForeignKey("Models.Entity.Employee", "SalesOfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany("Employees")
+                        .HasForeignKey("SalesOfficeId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("SalesOffice");
@@ -597,7 +685,19 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Models.Entity.Employee", "Manager")
+                        .WithMany("ManagedSalesOffices")
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("Address");
+
+                    b.Navigation("Manager");
+                });
+
+            modelBuilder.Entity("Models.Entity.Employee", b =>
+                {
+                    b.Navigation("ManagedSalesOffices");
                 });
 
             modelBuilder.Entity("Models.Entity.Owner", b =>
@@ -612,8 +712,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Models.Entity.SalesOffice", b =>
                 {
-                    b.Navigation("Manager")
-                        .IsRequired();
+                    b.Navigation("Employees");
 
                     b.Navigation("Properties");
                 });

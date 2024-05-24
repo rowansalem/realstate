@@ -42,15 +42,21 @@ namespace Data
             builder.Entity<IdentityRoleClaim<Guid>>().HasKey(c => c.Id);
             builder.Entity<IdentityUserClaim<Guid>>().HasKey(c => c.Id);
 
-            builder.Entity<SalesOffice>()
-                .HasOne(s => s.Manager)
-                .WithOne()
-                .HasForeignKey<SalesOffice>(s => s.ManagedByEmployeeId);
+         
+
+            builder.Entity<Employee>()
+            .HasOne(e => e.SalesOffice)
+            .WithMany(so => so.Employees)
+            .HasForeignKey(e => e.SalesOfficeId)
+            .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<SalesOffice>()
-                .HasMany(s => s.Employees)
-                .WithOne(e => e.SalesOffice)
-                .HasForeignKey(e => e.SalesOfficeId);
+                .HasOne(so => so.Manager)
+                .WithMany(e => e.ManagedSalesOffices)
+                .HasForeignKey(so => so.ManagerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
 
             builder.Entity<Property>()
                   .HasMany(p => p.PropertyOwners)
@@ -70,8 +76,8 @@ namespace Data
 
             // Seed data for SalesOffice
             builder.Entity<SalesOffice>().HasData(
-                new SalesOffice { Id = Guid.Parse("8e56f097-eec5-4b0e-bed5-aa8766212b67"), SalesOfficeName = "Downtown Office", AddressId = Guid.Parse("417fa29a-5a30-487d-a994-dd3d3060f021"), ManagedByEmployeeId = Guid.Parse("64d6ee5f-e553-43a8-8c47-d7a9f447c614") },
-                new SalesOffice { Id = Guid.Parse("028aa2c5-d4a3-4369-ab0b-86b3d74ffb23"), SalesOfficeName = "New Cairo Office", AddressId = Guid.Parse("4eccc760-57ce-483a-82cd-644caf6d28d9"), ManagedByEmployeeId = Guid.Parse("64d6ee5f-e553-43a8-8c47-d7a9f447c614") }
+                new SalesOffice { Id = Guid.Parse("8e56f097-eec5-4b0e-bed5-aa8766212b67"), SalesOfficeName = "Downtown Office", AddressId = Guid.Parse("417fa29a-5a30-487d-a994-dd3d3060f021"), ManagerId = Guid.Parse("64d6ee5f-e553-43a8-8c47-d7a9f447c614") },
+                new SalesOffice { Id = Guid.Parse("028aa2c5-d4a3-4369-ab0b-86b3d74ffb23"), SalesOfficeName = "New Cairo Office", AddressId = Guid.Parse("4eccc760-57ce-483a-82cd-644caf6d28d9"), ManagerId = Guid.Parse("64d6ee5f-e553-43a8-8c47-d7a9f447c614") }
             );
 
             // Seed data for Employees
@@ -91,7 +97,7 @@ namespace Data
                 new Owner { Id = Guid.Parse("47a0f14a-b028-403f-8ba3-a1489d8e266e"), OwnerFirstName = "Jane", OwnerLastName = "Smith" }
             );
 
-            // Seed data for Prop_Owner_Table
+            //// Seed data for Prop_Owner_Table
             builder.Entity<PropertyOwner>().HasData(
                 new PropertyOwner { Id = Guid.Parse("9247b51c-c626-44bd-b7b8-414a321e1485"), PropertyId = Guid.Parse("58fd99d4-3553-4fb4-b1ed-78d9c765a53a"), PercentOwned = 100, OwnerId = Guid.Parse("47a0f14a-b028-403f-8ba3-a1489d8e266e") },
                 new PropertyOwner { Id = Guid.Parse("4e0c5b04-b174-4230-b39c-5ee6aa966313"), PropertyId = Guid.Parse("958de581-e471-4079-b232-3d6900acfd25"), PercentOwned = 100, OwnerId = Guid.Parse("47a0f14a-b028-403f-8ba3-a1489d8e266e") }

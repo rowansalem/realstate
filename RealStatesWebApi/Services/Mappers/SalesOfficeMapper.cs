@@ -12,7 +12,6 @@ namespace Mappers
         {
             SalesOfficeDTO salesofficeDTO = new SalesOfficeDTO();
             salesofficeDTO.Id = source.Id;
-            salesofficeDTO.OfficeId = source.Id;
             salesofficeDTO.OfficeName = source.SalesOfficeName;
             if(source.Properties != null)
             {
@@ -68,8 +67,8 @@ namespace Mappers
         {
             SalesOffice salesoffice = new SalesOffice();
             salesoffice.SalesOfficeName = source.OfficeName;
-            salesoffice.Id = source.OfficeId;
-            salesoffice.ManagedByEmployeeId = source.ManagerId;
+            salesoffice.Id = source.Id;
+            salesoffice.ManagerId = source.ManagerId;
             salesoffice.AddressId = source.AddressId;
             return salesoffice;
         }
