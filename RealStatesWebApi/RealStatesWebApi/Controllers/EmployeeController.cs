@@ -29,7 +29,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public ActionResult GetEmployees()
         {
-            List<EmployeeDTO> employees = _employeeService.GetAll().ToList();
+            List<EmployeeDTO> employees = _employeeService.GetAll(null, ["SalesOffice"]).ToList();
             ApiResult<EmployeeDTO> result = ApiResult<EmployeeDTO>.Success(employees);
             return Ok(result);
         }
@@ -38,7 +38,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetEmployee(Guid id)
         {
-            EmployeeDTO employee = _employeeService.GetById(id);
+            EmployeeDTO employee = _employeeService.GetById(id, ["SalesOffice"]);
             ApiResult<EmployeeDTO> result = ApiResult<EmployeeDTO>.Success(employee);
             return Ok(result);
         }

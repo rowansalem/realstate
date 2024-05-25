@@ -1,5 +1,7 @@
 ﻿using RealStatesApp.Models;
 using RealStatesApp.Services;
+using RealStatesApp.Services.Employee.Contracts;
+using RealStatesApp.Services.SalesOffice.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

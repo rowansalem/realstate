@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:RealStatesApp"
+    xmlns:pages="clr-namespace:RealStatesApp.Pages.Employees" 
     Shell.FlyoutBehavior="Disabled"
     Title="RealStatesApp">
 
@@ -11,5 +12,9 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <ShellContent Title="Employees" ContentTemplate="{DataTemplate pages:EmployeesListPage}" />
+    <ShellContent Title="Add/Edit Employee" ContentTemplate="{DataTemplate pages:AddEditEmployeePage}" Route="AddEditEmployeePage"/>
+
 
 </Shell>

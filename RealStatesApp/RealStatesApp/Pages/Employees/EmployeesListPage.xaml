@@ -1,0 +1,48 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RealStatesApp.ViewModels"
+             x:Class="RealStatesApp.Pages.Employees.EmployeesListPage">
+
+    <ContentPage.BindingContext>
+        <local:EmployeesListViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Spacing="25" Padding="30">
+
+        <!-- Title and Add Button -->
+        <Grid ColumnDefinitions="*,Auto">
+            <Label Text="Employees List" FontSize="24" VerticalOptions="Center" />
+            <Button Text="Add New Employee" Command="{Binding AddCommand}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="1" />
+        </Grid>
+
+        <!-- Header -->
+        <Grid Padding="10" ColumnDefinitions="*,*,*,*,*,*">
+            <Label Text="Employee First" Grid.Column="0" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="Employee Last" Grid.Column="1" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="Date of Birth" Grid.Column="2" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="Age" Grid.Column="3" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="Sales Office Name" Grid.Column="4" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="Actions" Grid.Column="5" Style="{StaticResource HeaderLabelStyle}"/>
+        </Grid>
+
+        <!-- CollectionView for Employees -->
+        <CollectionView ItemsSource="{Binding EmployeesList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnDefinitions="*,*,*,*,*,*">
+                        <Label Text="{Binding EmpFirstName}" Grid.Column="0"/>
+                        <Label Text="{Binding EmpLastName}" Grid.Column="1"/>
+                        <Label Text="{Binding DateOfBirth, StringFormat='{0:MM/dd/yyyy}'}" Grid.Column="2"/>
+                        <Label Text="{Binding Age}" Grid.Column="3"/>
+                        <Label Text="{Binding SalesOfficeName}" Grid.Column="4"/>
+                        <StackLayout Orientation="Horizontal" Grid.Column="5" HorizontalOptions="EndAndExpand">
+                            <Button Text="Edit" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EmployeesListViewModel}}, Path=EditCommand}" CommandParameter="{Binding .}" Padding="10,0" Margin="10.0" />
+                            <Button x:Name="AddEditEmployeeBtn" Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EmployeesListViewModel}}, Path=DeleteCommand}" CommandParameter="{Binding .}" Padding="10,0" Margin="10.0" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

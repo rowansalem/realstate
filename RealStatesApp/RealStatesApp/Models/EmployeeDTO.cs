@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace RealStatesApp.Models
 {
-    public class EmployeeDTO
+    public class EmployeeDTO : BaseDTO
     {
-        public string EmployeeName { get; set; }
+        public string? EmpFirstName { get; set; }
+        public string? EmpLastName { get; set; }
+        public Guid? SalesOfficeId { get; set; }
+        public string? SalesOfficeName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int Age { get; set; }
+        public DateTime Timestamp { get; set; }
     }
+
 }

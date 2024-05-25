@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealStatesApp.Services
+namespace RealStatesApp.Services.SalesOffice.Contracts
 {
-    public interface IEmployeesService
+    public interface ISalesOfficeService
     {
-        Task<List<EmployeeDTO>> GetEmployeesAsync();
+        Task<List<SalesOfficeDTO>> GetSalesOfficesListAsync();
     }
 }

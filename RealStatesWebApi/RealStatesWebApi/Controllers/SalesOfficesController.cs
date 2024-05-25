@@ -5,6 +5,7 @@ using Microsoft.Identity.Web.Resource;
 using Models.Core;
 using Models.DTO;
 using Models.DTO.SalesOffice;
+using Models.Entity;
 using Services;
 
 namespace RealStatesWebApi.Controllers
@@ -30,7 +31,9 @@ namespace RealStatesWebApi.Controllers
         public async Task<IActionResult> GetOfficePropertyCounts()
         {
             List<SalesOfficeDTO> result = await _salesOfficeService.GetOfficesAsync();
-            return Ok(result);
+            ApiResult<SalesOfficeDTO> response = ApiResult<SalesOfficeDTO>.Success(result);
+
+            return Ok(response);
         }
 
         #region CRUD
