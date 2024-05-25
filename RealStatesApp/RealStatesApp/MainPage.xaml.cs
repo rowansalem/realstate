@@ -69,13 +69,13 @@ namespace RealStatesApp
         }
         private async void OnSalesOfficesListClickedAsync(object sender, EventArgs e)
         {
-            //await Shell.Current.GoToAsync(nameof(SalesOfficesListPage));
+            await Shell.Current.GoToAsync(nameof(SalesOfficesListPage));
 
-            //SemanticScreenReader.Announce(SalesOfficesListBtn.Text);
+            SemanticScreenReader.Announce(SalesOfficesListBtn.Text);
 
-            await Shell.Current.GoToAsync(nameof(OfficesPage));
+            //await Shell.Current.GoToAsync(nameof(OfficesPage));
 
-            SemanticScreenReader.Announce(OfficesBtn.Text);
+            //SemanticScreenReader.Announce(OfficesBtn.Text);
 
         }
     }

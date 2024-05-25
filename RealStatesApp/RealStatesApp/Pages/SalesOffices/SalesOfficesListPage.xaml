@@ -29,7 +29,7 @@
                 <DataTemplate>
                     <Grid Padding="10" ColumnDefinitions="*,*,*,*">
                         <Label Text="{Binding OfficeName}" Grid.Column="0"/>
-                        <Label Text="{Binding Manager.SalesOfficeName}" Grid.Column="1"/>
+                        <Label Text="{Binding Manager.EmpFirstName}" Grid.Column="1"/>
                         <Label Text="{Binding Address.AddressLine}" Grid.Column="2"/>
                         <StackLayout Orientation="Horizontal" Grid.Column="3" HorizontalOptions="Center">
                             <Button Text="Edit" Command="{Binding Source={RelativeSource AncestorType={x:Type local:SalesOfficesListViewModel}}, Path=EditCommand}" CommandParameter="{Binding .}" Padding="10,0" Margin="10.0" />

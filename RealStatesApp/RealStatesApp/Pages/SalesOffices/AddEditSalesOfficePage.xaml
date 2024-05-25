@@ -3,17 +3,25 @@
              xmlns:local="clr-namespace:RealStatesApp.ViewModels"
              x:Class="RealStatesApp.Pages.SalesOffices.AddEditSalesOfficePage">
 
+    <ContentPage.BindingContext>
+        <local:AddEditSalesOfficeViewModel />
+    </ContentPage.BindingContext>
+
     <VerticalStackLayout Spacing="25" Padding="30">
         <Label Text="{Binding PageTitle}" FontSize="24" VerticalOptions="Center" />
 
-        <Entry Placeholder="First Name" Text="{Binding SalesOffice.EmpFirstName}" />
-        <Entry Placeholder="Last Name" Text="{Binding SalesOffice.EmpLastName}" />
-        <DatePicker Date="{Binding SalesOffice.DateOfBirth}" />
-        <Picker Title="Select Office"
-        ItemsSource="{Binding SalesOffices}"
-        ItemDisplayBinding="{Binding OfficeName}"
-        SelectedItem="{Binding SelectedSalesOffice}"/>
-        
+        <Entry Placeholder="Sales Office Name" Text="{Binding SalesOffice.OfficeName}" />
+        <Picker Title="Select Address"
+                ItemsSource="{Binding Addresses}"
+                ItemDisplayBinding="{Binding AddressLine}"
+                SelectedItem="{Binding SelectedAddress}" />
+
+        <Picker Title="Select Manager"
+                ItemsSource="{Binding Managers}"
+                ItemDisplayBinding="{Binding EmpFirstName}"
+                SelectedItem="{Binding SelectedManager}" />
+
+
         <Button Text="{Binding ButtonText}" Command="{Binding SaveCommand}" />
     </VerticalStackLayout>
 </ContentPage>

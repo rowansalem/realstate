@@ -30,5 +30,14 @@ namespace RealStatesApp.Pages.SalesOffices
                 _viewModel.Initialize(new SalesOfficeDTO(), false);
             }
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            if (BindingContext is AddEditSalesOfficeViewModel viewModel)
+            {
+                viewModel.ClearForm();
+            }
+        }
     }
 }

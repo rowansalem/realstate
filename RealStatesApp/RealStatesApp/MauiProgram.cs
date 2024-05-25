@@ -93,7 +93,7 @@ namespace RealStatesApp
             // Add the configuration
             var configuration = new AppSettings
             {
-                BaseUrl = DeviceInfo.Platform == DevicePlatform.Android ? "https://10.0.2.2:7074" : "https://localhost:7074"
+                BaseUrl = DeviceInfo.Platform == DevicePlatform.Android ? "https://10.0.2.2:44338" : "https://localhost:44338"
             };
 
             builder.Services.AddSingleton(configuration);

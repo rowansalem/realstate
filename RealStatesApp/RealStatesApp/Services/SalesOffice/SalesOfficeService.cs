@@ -25,7 +25,7 @@ namespace RealStatesApp.Services.SalesOffice
 
         public async Task<List<SalesOfficeDTO>> GetSalesOfficesListAsync()
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}/SalesOffices");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/SalesOffices/Property");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var SalesOffices = JsonConvert.DeserializeObject<DataListApiResult<SalesOfficeDTO>>(content);
@@ -35,7 +35,7 @@ namespace RealStatesApp.Services.SalesOffice
 
         public async Task<SalesOfficeDTO?> GetSalesOfficeByIdAsync(Guid id)
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}/SalesOffice/{id}");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/SalesOffices/{id}");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var salesoffice = JsonConvert.DeserializeObject<DataApiResult<SalesOfficeDTO>>(content);
@@ -45,7 +45,7 @@ namespace RealStatesApp.Services.SalesOffice
         public async Task<bool?> CreateSalesOfficeAsync(SalesOfficeDTO salesoffice)
         {
             var salesofficeJson = JsonConvert.SerializeObject(salesoffice);
-            var response = await _httpClient.PostAsync($"{_baseUrl}/SalesOffice", new StringContent(salesofficeJson, Encoding.UTF8, "application/json"));
+            var response = await _httpClient.PostAsync($"{_baseUrl}/SalesOffices", new StringContent(salesofficeJson, Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var createdSalesOffice = JsonConvert.DeserializeObject<ApiResult<SalesOfficeDTO>>(content);
@@ -55,7 +55,7 @@ namespace RealStatesApp.Services.SalesOffice
         public async Task<bool?> UpdateSalesOfficeAsync(SalesOfficeDTO salesoffice)
         {
             var salesofficeJson = JsonConvert.SerializeObject(salesoffice);
-            var response = await _httpClient.PutAsync($"{_baseUrl}/SalesOffice/{salesoffice.Id}", new StringContent(salesofficeJson, Encoding.UTF8, "application/json"));
+            var response = await _httpClient.PutAsync($"{_baseUrl}/SalesOffices/{salesoffice.Id}", new StringContent(salesofficeJson, Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var updatedSalesOffice = JsonConvert.DeserializeObject<ApiResult<SalesOfficeDTO>>(content);
@@ -65,7 +65,7 @@ namespace RealStatesApp.Services.SalesOffice
 
         public async Task<bool?> DeleteSalesOfficeAsync(Guid id)
         {
-            var response = await _httpClient.DeleteAsync($"{_baseUrl}/SalesOffice/{id}");
+            var response = await _httpClient.DeleteAsync($"{_baseUrl}/SalesOffices/{id}");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var deletedSalesOffice = JsonConvert.DeserializeObject<ApiResult<SalesOfficeDTO>>(content);

@@ -8,7 +8,8 @@ using Microsoft.Maui.Controls;
 using System;
 using System.Threading.Tasks;
 using RealStatesApp.Services.SalesOffice.Contracts;
-using RealStatesApp.Services.SalesOffice.Contracts;
+using RealStatesApp.Services.Address.Contracts;
+using RealStatesApp.Services.Employee.Contracts;
 
 namespace RealStatesApp.ViewModels
 {
@@ -16,7 +17,10 @@ namespace RealStatesApp.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private readonly ISalesOfficeService _salesOfficeService;
+        private readonly IAddressService _addressService;
+        private readonly IEmployeesService _employeeService;
 
+        // Property to hold the SalesOffice object
         private SalesOfficeDTO _salesoffice;
         public SalesOfficeDTO SalesOffice
         {
@@ -24,42 +28,54 @@ namespace RealStatesApp.ViewModels
             set
             {
                 _salesoffice = value;
-                //if(value.SalesOfficeId != null)
-                //{
-                //    SelectedSalesOffice = SalesOffices.FirstOrDefault(x => x.Id == value.SalesOfficeId);
-                //}
-
-                OnPropertyChanged();
-            }
-        }
-
-        private GetOfficeListResponse _selectedOffice;
-        public ObservableCollection<GetOfficeListResponse> Offices { get; } = new();
-        public GetOfficeListResponse SelectedOffice
-        {
-            get => _selectedOffice;
-            set
-            {
-                if (_selectedOffice != value)
+                if(value.AddressId != Guid.Empty)
                 {
-                    _selectedOffice = value;
-                    OnPropertyChanged();
+                    SelectedAddress = Addresses.FirstOrDefault(a => a.Id == value.AddressId);
                 }
-            }
-        }
-
-        public ObservableCollection<SalesOfficeDTO> SalesOffices { get; } = new ObservableCollection<SalesOfficeDTO>();
-        private SalesOfficeDTO _selectedSalesOffice;
-        public SalesOfficeDTO SelectedSalesOffice
-        {
-            get => _selectedSalesOffice;
-            set
-            {
-                _selectedSalesOffice = value;
-                //SalesOffice.SalesOfficeId = value?.Id;
+                if(value.ManagerId != Guid.Empty)
+                {
+                    SelectedManager = Managers.FirstOrDefault(m => m.Id == value.ManagerId);
+                }
                 OnPropertyChanged();
             }
         }
+
+
+
+        // Property to hold the list of Addresses
+        public ObservableCollection<AddressDTO> Addresses { get; } = new ObservableCollection<AddressDTO>();
+        private AddressDTO _selectedAddress;
+        public AddressDTO SelectedAddress
+        {
+            get => _selectedAddress;
+            set
+            {
+                _selectedAddress = value;
+                if (value != null)
+                {
+                    SalesOffice.AddressId = value.Id;
+                }
+                OnPropertyChanged();
+            }
+        }
+
+        // Property to hold the list of Employees
+        public ObservableCollection<EmployeeDTO> Managers { get; } = new ObservableCollection<EmployeeDTO>();
+        private EmployeeDTO _selectedManager;
+        public EmployeeDTO SelectedManager
+        {
+            get => _selectedManager;
+            set
+            {
+                _selectedManager = value;
+                if(value != null)
+                {
+                SalesOffice.ManagerId = value.Id;
+                }
+                OnPropertyChanged();
+            }
+        }
+
 
         public ICommand SaveCommand { get; }
         private String _pageTitle;
@@ -82,12 +98,17 @@ namespace RealStatesApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        public AddEditSalesOfficeViewModel(ISalesOfficeService salesofficeService)
+        public AddEditSalesOfficeViewModel() : this(new DefaultSalesOfficesService(),new DefaultEmployeesService(),new DefaultAddressService())
+        {
+        }
+        public AddEditSalesOfficeViewModel(ISalesOfficeService salesofficeService,IEmployeesService employeesService,IAddressService addressService)
         {
             _salesOfficeService = salesofficeService;
+            _employeeService = employeesService;
+            _addressService = addressService;
             SaveCommand = new Command(OnSave);
-            LoadSalesOffices();
+            LoadAddresses();
+            LoadManagers();
         }
 
         public void Initialize(SalesOfficeDTO salesoffice, bool isEdit)
@@ -98,13 +119,33 @@ namespace RealStatesApp.ViewModels
             OnPropertyChanged();
         }
 
-        private async void LoadSalesOffices()
+        private void ClearDataForm()
         {
-            var salesOffices = await _salesOfficeService.GetSalesOfficesListAsync();
-            SalesOffices.Clear();
-            foreach (var office in salesOffices)
+            SalesOffice = new SalesOfficeDTO();
+            SelectedAddress = null;
+            SelectedManager = null;
+        }
+        public void ClearForm()
+        {
+            ClearDataForm();
+        }
+        private async void LoadAddresses()
+        {
+            var addresses = await _addressService.GetAddressAsync();
+            Addresses.Clear();
+            foreach (var address in addresses)
             {
-                SalesOffices.Add(office);
+                Addresses.Add(address);
+            }
+        }
+
+        private async void LoadManagers()
+        {
+            var managers = await _employeeService.GetEmployeesAsync();
+            Managers.Clear();
+            foreach (var manager in managers)
+            {
+                Managers.Add(manager);
             }
         }
 
