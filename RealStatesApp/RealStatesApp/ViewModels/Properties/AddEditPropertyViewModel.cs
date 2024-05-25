@@ -30,7 +30,9 @@ namespace RealStatesApp.ViewModels
                 _property = value;
                 if (_property?.PropertyOwners != null)
                 {
-                    Owners.ToList().ForEach(x => x.IsSelected = value.PropertyOwners.Select(x=>x.Id).Contains(x.Id));
+                    Owners.ToList().ForEach(x => {
+                        x.IsSelected = _property.PropertyOwners.Select(o => o.Id).Contains(x.Id);
+                    });
                 }
                 if(_property?.SalesOffice != null)
                 {
@@ -105,12 +107,15 @@ namespace RealStatesApp.ViewModels
 
         private async void LoadOwners()
         {
+      
             var owners = await _ownersService.GetOwnersAsync();
             Owners.Clear();
             foreach (var owner in owners)
             {
                 Owners.Add(owner);
             }
+
+            
         }
 
         private async void LoadSalesOffices()
@@ -139,7 +144,7 @@ namespace RealStatesApp.ViewModels
 
             await Shell.Current.GoToAsync("..");
         }
-
+     
         public Task<PropertyDTO> GetPropertyByIdAsync(Guid propertyId)
         {
             return _propertyService.GetPropertyByIdAsync(propertyId);

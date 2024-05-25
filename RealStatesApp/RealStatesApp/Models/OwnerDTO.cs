@@ -1,4 +1,5 @@
 ﻿using RealStatesApp.Models;
+using System.ComponentModel;
 using System.Net;
 
 namespace RealStatesApp.Models
@@ -10,7 +11,20 @@ namespace RealStatesApp.Models
         public IEnumerable<Guid>? PropertiesId { get; set; }
         public List<PropertyDTO>? Properties { get; set; }  
         public DateTime Timestamp { get; set; }
-        public bool IsSelected { get; set; }
+        private bool _isSelected;
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                if (_isSelected != value)
+                {
+                    _isSelected = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
     }
 
 
