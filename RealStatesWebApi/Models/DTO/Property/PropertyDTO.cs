@@ -18,6 +18,7 @@ namespace Models.DTO
         public string City { get; set; }
 
         public List<Guid>? OwnersId { get; set; }
+        public Guid SalesOfficeId{ get; set; }
         public List<OwnerDTO>? PropertyOwners { get; set; }
 
         public SalesOfficeDTO? SalesOffice { get; set; }

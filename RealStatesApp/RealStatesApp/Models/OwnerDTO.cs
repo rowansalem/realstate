@@ -10,6 +10,7 @@ namespace RealStatesApp.Models
         public IEnumerable<Guid>? PropertiesId { get; set; }
         public List<PropertyDTO>? Properties { get; set; }  
         public DateTime Timestamp { get; set; }
+        public bool IsSelected { get; set; }
     }
 
 

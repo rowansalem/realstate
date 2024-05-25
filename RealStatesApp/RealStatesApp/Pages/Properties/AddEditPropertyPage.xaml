@@ -1,0 +1,52 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RealStatesApp.ViewModels"
+             x:Class="RealStatesApp.Pages.Properties.AddEditPropertyPage">
+
+    <ContentPage.BindingContext>
+        <local:AddEditPropertyViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+
+        <VerticalStackLayout Spacing="25" Padding="30">
+            <Label Text="{Binding PageTitle}" FontSize="24" VerticalOptions="Center" />
+
+            <Label Text="Price" FontSize="Body" />
+            <Entry Placeholder="Price" Text="{Binding Property.ListPrice}" Keyboard="Numeric" />
+
+            <Label Text="Status" FontSize="Body" />
+            <Picker ItemsSource="{Binding StatusOptions}" SelectedItem="{Binding Property.Status}" />
+
+            <Label Text="Number of Bedrooms" FontSize="Body" />
+            <Entry Placeholder="Number of Bedrooms" Text="{Binding Property.NoBedrooms}" Keyboard="Numeric" />
+
+            <Label Text="Number of Bathrooms" FontSize="Body" />
+            <Entry Placeholder="Number of Bathrooms" Text="{Binding Property.NoOfBathrooms}" Keyboard="Numeric" />
+
+            <Label Text="City" FontSize="Body" />
+            <Entry Placeholder="City" Text="{Binding Property.City}" />
+
+            <Picker Title="Select Office"
+                ItemsSource="{Binding SalesOffices}"
+                ItemDisplayBinding="{Binding OfficeName}"
+                SelectedItem="{Binding SelectedSalesOffice}"/>
+
+            <Label Text="Owners" FontSize="Body" />
+
+            <CollectionView ItemsSource="{Binding Owners}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding IsSelected}" />
+                            <Label Text="{Binding OwnerFirstName}" VerticalOptions="Center" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <Button Text="{Binding ButtonText}" Command="{Binding SaveCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

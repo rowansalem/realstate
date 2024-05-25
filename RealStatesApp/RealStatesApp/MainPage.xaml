@@ -7,39 +7,39 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            <StackLayout Orientation="Horizontal" Grid.Column="5" HorizontalOptions="StartAndExpand">
-                <Label Text="Navigation" FontSize="24" VerticalOptions="Center" Padding="10" Margin="0,10" />
-                <Button
-                    x:Name="EmployeesListBtn"
-                    Text="Employees Crud" 
-                    SemanticProperties.Hint=""
-                    Clicked="OnEmployeesListClickedAsync"
-                    Padding="5"
-                    Margin="10"
-                 />
-                <Button
-                    x:Name="AddressesListBtn"
-                    Text="Address Crud" 
-                    SemanticProperties.Hint=""
-                    Clicked="OnAddressesListClickedAsync"
-                    Padding="5"
-                    Margin="10"
-                 />
-                <Button
-                    x:Name="OwnersListBtn"
-                    Text="Owners Crud" 
-                    SemanticProperties.Hint=""
-                    Clicked="OnOwnersListClickedAsync"
-                    Padding="5"
-                    Margin="10"
-                 />
-            </StackLayout>
 
             <Image
                 Source="dotnet_bot.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
+
+
+            <Label Text="List of CRUDS" FontSize="24" VerticalOptions="Center" Padding="10" Margin="0,10" />
+                        <Button
+                 x:Name="EmployeesListBtn"
+                 Text="Employees Crud" 
+                 SemanticProperties.Hint=""
+                 Clicked="OnEmployeesListClickedAsync"
+              />
+                        <Button
+                 x:Name="AddressesListBtn"
+                 Text="Address Crud" 
+                 SemanticProperties.Hint=""
+                 Clicked="OnAddressesListClickedAsync"
+              />
+                        <Button
+                 x:Name="OwnersListBtn"
+                 Text="Owners Crud" 
+                 SemanticProperties.Hint=""
+                 Clicked="OnOwnersListClickedAsync"
+              />
+                        <Button
+                 x:Name="PropertiesListBtn"
+                 Text="Properties Crud" 
+                 SemanticProperties.Hint=""
+                 Clicked="OnPropertiesListClickedAsync"
+              />
 
             <Label Text="List Of Reports" FontSize="24" VerticalOptions="Center" Padding="10" Margin="0,10" />
             <Button

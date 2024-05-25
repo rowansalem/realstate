@@ -1,5 +1,4 @@
-﻿using Android.Telephony.Data;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RealStatesApp.Models;
 using RealStatesApp.Services.Employee.Contracts;
 using RealStatesApp.Services.SalesOffice.Contracts;

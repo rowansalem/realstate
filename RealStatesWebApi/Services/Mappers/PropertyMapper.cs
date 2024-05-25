@@ -52,11 +52,7 @@ namespace Mappers
             property.NoOfBedrooms = source.NoBedrooms;
             property.NoOfBathrooms = source.NoOfBathrooms;
             property.City = source.City;
-
-            if(source.SalesOffice != null)
-            {
-                property.SalesOfficeId = source.SalesOffice.Id;
-            }
+            property.SalesOfficeId = source.SalesOfficeId;
 
             if(source.OwnersId != null && source.OwnersId.Count > 0)
             {

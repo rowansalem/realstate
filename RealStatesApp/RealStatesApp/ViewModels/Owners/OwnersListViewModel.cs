@@ -1,11 +1,12 @@
-﻿using RealStatesApp.Models;
+﻿
+
+using RealStatesApp.Models;
+using RealStatesApp.Pages.Owners;
+using RealStatesApp.Services.Owner.Contracts;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using RealStatesApp.Pages.Owners;
-using RealStatesApp.Services.Employee.Contracts;
-using RealStatesApp.Services.Owner.Contracts;
 
 namespace RealStatesApp.ViewModels
 {
