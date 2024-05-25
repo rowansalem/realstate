@@ -13,8 +13,4 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
-    <ShellContent Title="Employees" ContentTemplate="{DataTemplate pages:EmployeesListPage}" />
-    <ShellContent Title="Add/Edit Employee" ContentTemplate="{DataTemplate pages:AddEditEmployeePage}" Route="AddEditEmployeePage"/>
-
-
 </Shell>

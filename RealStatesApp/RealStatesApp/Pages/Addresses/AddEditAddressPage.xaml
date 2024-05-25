@@ -1,0 +1,16 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RealStatesApp.ViewModels"
+             x:Class="RealStatesApp.Pages.Addresses.AddEditAddressPage">
+
+    <VerticalStackLayout Spacing="25" Padding="30">
+        <Label Text="{Binding PageTitle}" FontSize="24" VerticalOptions="Center" />
+
+        <Entry Placeholder="Address Line" Text="{Binding Address.AddressLine}" />
+        <Entry Placeholder="City" Text="{Binding Address.City}" />
+        <Entry Placeholder="State" Text="{Binding Address.State}" />
+        <Entry Placeholder="zipCode" Text="{Binding Address.ZipCode}" />
+
+        <Button Text="{Binding ButtonText}" Command="{Binding SaveCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

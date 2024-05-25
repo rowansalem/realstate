@@ -76,6 +76,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\Addresses\AddEditAddressPage.xaml.cs">
+	    <DependentUpon>AddEditAddressPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\Addresses\AddressesListPage.xaml.cs">
+	    <DependentUpon>AddressesListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\Employees\AddEditEmployeePage.xaml.cs">
 	    <DependentUpon>AddEditEmployeePage.xaml</DependentUpon>
 	  </Compile>
@@ -95,6 +101,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\Addresses\AddEditAddressPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Addresses\AddressesListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Employees\AddEditEmployeePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
