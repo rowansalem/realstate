@@ -3,6 +3,7 @@ using RealStatesApp.Pages.Addresses;
 using RealStatesApp.Pages.Employees;
 using RealStatesApp.Pages.Owners;
 using RealStatesApp.Pages.Properties;
+using RealStatesApp.Pages.SalesOffices;
 using RealStatesApp.Services;
 using RealStatesApp.Services.Address;
 using RealStatesApp.Services.Address.Contracts;
@@ -38,10 +39,10 @@ namespace RealStatesApp
             builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddSingleton<IRealEstateService, RealEstateService>();
             builder.Services.AddTransient<IEmployeesService, EmployeesService>();
-            builder.Services.AddSingleton<ISalesOfficeService, SalesOfficeService>();
             builder.Services.AddSingleton<IAddressService, AddressService>();
             builder.Services.AddSingleton<IOwnersService, OwnersService>();
             builder.Services.AddSingleton<IPropertiesService, PropertiesService>();
+            builder.Services.AddSingleton<ISalesOfficeService, SalesOfficeService>();
 
             // ViewModels
             builder.Services.AddTransient<PropertiesViewModel>();
@@ -56,6 +57,8 @@ namespace RealStatesApp
             builder.Services.AddTransient<AddEditOwnerViewModel>();
             builder.Services.AddTransient<PropertiesListViewModel>();
             builder.Services.AddTransient<AddEditPropertyViewModel>();
+            builder.Services.AddTransient<SalesOfficesListViewModel>();
+            builder.Services.AddTransient<AddEditSalesOfficeViewModel>();
 
             // Pages
             builder.Services.AddSingleton<PropertiesPage>();
@@ -69,6 +72,8 @@ namespace RealStatesApp
             builder.Services.AddSingleton<AddEditOwnerPage>();
             builder.Services.AddSingleton<PropertiesListPage>();
             builder.Services.AddSingleton<AddEditPropertyPage>();
+            builder.Services.AddSingleton<SalesOfficesListPage>();
+            builder.Services.AddSingleton<AddEditSalesOfficePage>();
 
             // Routing
             Routing.RegisterRoute(nameof(EmployeesPage), typeof(EmployeesPage));
@@ -82,11 +87,13 @@ namespace RealStatesApp
             Routing.RegisterRoute(nameof(AddEditOwnerPage), typeof(AddEditOwnerPage));
             Routing.RegisterRoute(nameof(PropertiesListPage), typeof(PropertiesListPage));
             Routing.RegisterRoute(nameof(AddEditPropertyPage), typeof(AddEditPropertyPage));
+            Routing.RegisterRoute(nameof(SalesOfficesListPage), typeof(SalesOfficesListPage));
+            Routing.RegisterRoute(nameof(AddEditSalesOfficePage), typeof(AddEditSalesOfficePage));
             
             // Add the configuration
             var configuration = new AppSettings
             {
-                BaseUrl = DeviceInfo.Platform == DevicePlatform.Android ? "https://10.0.2.2:7074" : "https://localhost:44338"
+                BaseUrl = DeviceInfo.Platform == DevicePlatform.Android ? "https://10.0.2.2:7074" : "https://localhost:7074"
             };
 
             builder.Services.AddSingleton(configuration);

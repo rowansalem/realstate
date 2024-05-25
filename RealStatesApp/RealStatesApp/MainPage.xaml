@@ -40,6 +40,12 @@
                  SemanticProperties.Hint=""
                  Clicked="OnPropertiesListClickedAsync"
               />
+            <Button
+                 x:Name="SalesOfficesListBtn"
+                 Text="SalesOffices Crud" 
+                 SemanticProperties.Hint=""
+                 Clicked="OnSalesOfficesListClickedAsync"
+              />
 
             <Label Text="List Of Reports" FontSize="24" VerticalOptions="Center" Padding="10" Margin="0,10" />
             <Button

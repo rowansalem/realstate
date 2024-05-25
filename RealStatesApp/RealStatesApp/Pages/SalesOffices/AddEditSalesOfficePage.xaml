@@ -1,0 +1,19 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RealStatesApp.ViewModels"
+             x:Class="RealStatesApp.Pages.SalesOffices.AddEditSalesOfficePage">
+
+    <VerticalStackLayout Spacing="25" Padding="30">
+        <Label Text="{Binding PageTitle}" FontSize="24" VerticalOptions="Center" />
+
+        <Entry Placeholder="First Name" Text="{Binding SalesOffice.EmpFirstName}" />
+        <Entry Placeholder="Last Name" Text="{Binding SalesOffice.EmpLastName}" />
+        <DatePicker Date="{Binding SalesOffice.DateOfBirth}" />
+        <Picker Title="Select Office"
+        ItemsSource="{Binding SalesOffices}"
+        ItemDisplayBinding="{Binding OfficeName}"
+        SelectedItem="{Binding SelectedSalesOffice}"/>
+        
+        <Button Text="{Binding ButtonText}" Command="{Binding SaveCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

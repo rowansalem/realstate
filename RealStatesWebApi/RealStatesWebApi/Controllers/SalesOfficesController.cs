@@ -41,7 +41,7 @@ namespace RealStatesWebApi.Controllers
         [HttpGet("Property")]
         public ActionResult GetPropertys()
         {
-            List<SalesOfficeDTO> employees = _salesOfficeService.GetAll().ToList();
+            List<SalesOfficeDTO> employees = _salesOfficeService.GetAll(null, ["Address", "Manager"]).ToList();
             ApiResult<SalesOfficeDTO> result = ApiResult<SalesOfficeDTO>.Success(employees);
             return Ok(result);
         }

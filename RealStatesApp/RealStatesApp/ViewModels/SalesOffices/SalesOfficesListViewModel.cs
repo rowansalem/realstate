@@ -1,6 +1,7 @@
 ﻿
 
 using RealStatesApp.Models;
+using RealStatesApp.Pages.SalesOffices;
 using RealStatesApp.Services.SalesOffice.Contracts;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -69,19 +70,19 @@ namespace RealStatesApp.ViewModels
             {
             { "salesofficeId", salesoffice.Id.ToString() } 
             };
-            //await Shell.Current.GoToAsync(nameof(AddEditSalesOfficePage), queryParameters);
+            await Shell.Current.GoToAsync(nameof(AddEditSalesOfficePage), queryParameters);
         }
 
 
         private async void OnDelete(SalesOfficeDTO salesoffice)
         {
-            //await _salesofficeService.DeleteSalesOfficeAsync(salesoffice.Id);
+            await _salesofficeService.DeleteSalesOfficeAsync(salesoffice.Id);
             await LoadSalesOfficesAsync();
         }
 
         private async void OnAdd()
         {
-            //await Shell.Current.GoToAsync(nameof(AddEditSalesOfficePage));
+            await Shell.Current.GoToAsync(nameof(AddEditSalesOfficePage));
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

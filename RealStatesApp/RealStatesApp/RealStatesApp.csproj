@@ -82,6 +82,12 @@
 	  <Compile Update="Pages\Addresses\AddressesListPage.xaml.cs">
 	    <DependentUpon>AddressesListPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\SalesOffices\AddEditSalesOfficePage.xaml.cs">
+	    <DependentUpon>AddEditSalesOfficePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\SalesOffices\SalesOfficesListPage.xaml.cs">
+	    <DependentUpon>SalesOfficesListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\Properties\AddEditPropertyPage.xaml.cs">
 	    <DependentUpon>AddEditPropertyPage.xaml</DependentUpon>
 	  </Compile>
@@ -117,6 +123,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Addresses\AddressesListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SalesOffices\AddEditSalesOfficePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SalesOffices\SalesOfficesListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Properties\AddEditPropertyPage.xaml">
