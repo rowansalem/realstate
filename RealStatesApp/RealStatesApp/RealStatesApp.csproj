@@ -82,6 +82,12 @@
 	  <Compile Update="Pages\Addresses\AddressesListPage.xaml.cs">
 	    <DependentUpon>AddressesListPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\Owners\AddEditOwnerPage.xaml.cs">
+	    <DependentUpon>AddEditOwnerPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\Owners\OwnersListPage.xaml.cs">
+	    <DependentUpon>OwnersListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\Employees\AddEditEmployeePage.xaml.cs">
 	    <DependentUpon>AddEditEmployeePage.xaml</DependentUpon>
 	  </Compile>
@@ -105,6 +111,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Addresses\AddressesListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Owners\AddEditOwnerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Owners\OwnersListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Employees\AddEditEmployeePage.xaml">

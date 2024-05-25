@@ -1,11 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
 using RealStatesApp.Pages.Addresses;
 using RealStatesApp.Pages.Employees;
+using RealStatesApp.Pages.Owners;
 using RealStatesApp.Services;
 using RealStatesApp.Services.Address;
 using RealStatesApp.Services.Address.Contracts;
 using RealStatesApp.Services.Employee;
 using RealStatesApp.Services.Employee.Contracts;
+using RealStatesApp.Services.Owner;
+using RealStatesApp.Services.Owner.Contracts;
 using RealStatesApp.Services.SalesOffice;
 using RealStatesApp.Services.SalesOffice.Contracts;
 using RealStatesApp.ViewModels;
@@ -34,6 +37,7 @@ namespace RealStatesApp
             builder.Services.AddTransient<IEmployeesService, EmployeesService>();
             builder.Services.AddSingleton<ISalesOfficeService, SalesOfficeService>();
             builder.Services.AddSingleton<IAddressService, AddressService>();
+            builder.Services.AddSingleton<IOwnersService, OwnersService>();
 
             // ViewModels
             builder.Services.AddTransient<PropertiesViewModel>();
@@ -44,6 +48,8 @@ namespace RealStatesApp
             builder.Services.AddTransient<AddEditEmployeeViewModel>();
             builder.Services.AddTransient<AddressListViewModel>();
             builder.Services.AddTransient<AddEditAddressViewModel>();
+            builder.Services.AddTransient<OwnersListViewModel>();
+            builder.Services.AddTransient<AddEditOwnerViewModel>();
 
             // Pages
             builder.Services.AddSingleton<PropertiesPage>();
@@ -53,6 +59,8 @@ namespace RealStatesApp
             builder.Services.AddSingleton<AddEditEmployeePage>();
             builder.Services.AddSingleton<AddressesListPage>();
             builder.Services.AddSingleton<AddEditAddressPage>();
+            builder.Services.AddSingleton<OwnersListPage>();
+            builder.Services.AddSingleton<AddEditOwnerPage>();
 
             // Routing
             Routing.RegisterRoute(nameof(EmployeesPage), typeof(EmployeesPage));
@@ -62,6 +70,8 @@ namespace RealStatesApp
             Routing.RegisterRoute(nameof(AddEditEmployeePage), typeof(AddEditEmployeePage));
             Routing.RegisterRoute(nameof(AddressesListPage), typeof(AddressesListPage));
             Routing.RegisterRoute(nameof(AddEditAddressPage), typeof(AddEditAddressPage));
+            Routing.RegisterRoute(nameof(OwnersListPage), typeof(OwnersListPage));
+            Routing.RegisterRoute(nameof(AddEditOwnerPage), typeof(AddEditOwnerPage));
             
             // Add the configuration
             var configuration = new AppSettings

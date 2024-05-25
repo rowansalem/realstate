@@ -1,0 +1,14 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RealStatesApp.ViewModels"
+             x:Class="RealStatesApp.Pages.Owners.AddEditOwnerPage">
+
+    <VerticalStackLayout Spacing="25" Padding="30">
+        <Label Text="{Binding PageTitle}" FontSize="24" VerticalOptions="Center" />
+
+        <Entry Placeholder="First Name" Text="{Binding Owner.OwnerFirstName}" />
+        <Entry Placeholder="Last Name" Text="{Binding Owner.OwnerLastName}" />
+
+        <Button Text="{Binding ButtonText}" Command="{Binding SaveCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

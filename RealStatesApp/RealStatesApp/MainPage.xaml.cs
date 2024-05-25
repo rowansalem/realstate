@@ -2,6 +2,7 @@
 
 using RealStatesApp.Pages.Addresses;
 using RealStatesApp.Pages.Employees;
+using RealStatesApp.Pages.Owners;
 
 namespace RealStatesApp
 {
@@ -48,6 +49,13 @@ namespace RealStatesApp
             await Shell.Current.GoToAsync(nameof(AddressesListPage));
 
             SemanticScreenReader.Announce(AddressesListBtn.Text);
+
+        }
+        private async void OnOwnersListClickedAsync(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(OwnersListPage));
+
+            SemanticScreenReader.Announce(OwnersListBtn.Text);
 
         }
     }

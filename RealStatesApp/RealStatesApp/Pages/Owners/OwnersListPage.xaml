@@ -1,0 +1,42 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RealStatesApp.ViewModels"
+             x:Class="RealStatesApp.Pages.Owners.OwnersListPage">
+
+    <ContentPage.BindingContext>
+        <local:OwnersListViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Spacing="25" Padding="30">
+
+        <!-- Title and Add Button -->
+        <Grid ColumnDefinitions="*,Auto">
+            <Label Text="Owners List" FontSize="24" VerticalOptions="Center" />
+            <Button Text="Add New Owner" Command="{Binding AddCommand}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="1" />
+        </Grid>
+
+        <!-- Header -->
+        <Grid Padding="10" ColumnDefinitions="*,*,*">
+            <Label Text="Owner First" Grid.Column="0" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="Owner Last" Grid.Column="1" Style="{StaticResource HeaderLabelStyle}"/>
+            <Label Text="Actions" Grid.Column="2" Style="{StaticResource HeaderLabelStyle}"/>
+        </Grid>
+
+        <!-- CollectionView for Owners -->
+        <CollectionView ItemsSource="{Binding OwnersList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnDefinitions="*,*,*">
+                        <Label Text="{Binding OwnerFirstName}" Grid.Column="0"/>
+                        <Label Text="{Binding OwnerLastName}" Grid.Column="1"/>
+                        <StackLayout Orientation="Horizontal" Grid.Column="2" HorizontalOptions="Start">
+                            <Button Text="Edit" Command="{Binding Source={RelativeSource AncestorType={x:Type local:OwnersListViewModel}}, Path=EditCommand}" CommandParameter="{Binding .}" Padding="10,0" Margin="10.0" />
+                            <Button x:Name="AddEditOwnerBtn" Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type local:OwnersListViewModel}}, Path=DeleteCommand}" CommandParameter="{Binding .}" Padding="10,0" Margin="10.0" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>
