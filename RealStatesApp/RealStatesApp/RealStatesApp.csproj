@@ -40,6 +40,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
+		<MauiImage Include="Platforms\Android\Resources\drawable-hdpi\appicon_hdpi.png" />
+		<MauiImage Include="Platforms\Android\Resources\drawable-mdpi\appicon_mhdpi.png" />
+		<MauiImage Include="Platforms\Android\Resources\drawable-xhdpi\appicon_xhdpi.png" />
+		<MauiImage Include="Platforms\Android\Resources\drawable-xxhdpi\appicon_xxhdpi.png" />
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
@@ -54,6 +58,14 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Remove="Platforms\Android\Resources\drawable-hdpi\appicon_hdpi.png" />
+	  <AndroidResource Remove="Platforms\Android\Resources\drawable-mdpi\appicon_mhdpi.png" />
+	  <AndroidResource Remove="Platforms\Android\Resources\drawable-xhdpi\appicon_xhdpi.png" />
+	  <AndroidResource Remove="Platforms\Android\Resources\drawable-xxhdpi\appicon_xxhdpi.png" />
+	  <AndroidResource Remove="Platforms\Android\Resources\drawable-xxxhdpi\appicon_xxxhdpi.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -98,6 +110,10 @@
 	  <MauiXaml Update="PropertiesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Platforms\Android\Resources\drawable-xxxhdpi\appicon_xxxhdpi.png" />
 	</ItemGroup>
 
 </Project>

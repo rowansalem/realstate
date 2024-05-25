@@ -11,15 +11,20 @@ namespace RealStatesApp.Services
     public class RealEstateService : IRealEstateService
     {
         private HttpClient _httpClient;
+        private readonly string _baseUrl;
 
-        public RealEstateService(HttpClient httpClient)
+        public RealEstateService( AppSettings appSettings)
         {
-            _httpClient = httpClient;
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+            _httpClient = new HttpClient(handler);
+            _baseUrl = appSettings.BaseUrl;
+
         }
 
         public async Task<PropertiesPerOfficeDTO?> GetPropertiesPerOfficeAsync(Guid officeId)
         {
-            var response = await _httpClient.GetAsync($"https://localhost:7074/Reports/PropertiesPerOffice/{officeId}");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Reports/PropertiesPerOffice/{officeId}");
             response.EnsureSuccessStatusCode();
             var jsonString = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<PropertiesPerOfficeDTO>(jsonString);
@@ -27,17 +32,25 @@ namespace RealStatesApp.Services
         
         public async Task<EmployeesByOfficeDTO?> GetEmployeesByOfficeAsync(Guid officeId)
         {
-            var response = await _httpClient.GetAsync($"https://localhost:7074/Reports/EmployeesByOffice/{officeId}");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Reports/EmployeesByOffice/{officeId}");
             response.EnsureSuccessStatusCode();
             var jsonString = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<EmployeesByOfficeDTO>(jsonString);
         }
         public async Task<List<OfficePropertyCountDTO>?> GetOfficePropertyCountsAsync()
         {
-            var response = await _httpClient.GetAsync($"https://localhost:7074/Reports/OfficePropertyCounts");
-            response.EnsureSuccessStatusCode();
-            var jsonString = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<OfficePropertyCountDTO>>(jsonString);
+            try
+            {
+                var url = $"{_baseUrl}/Reports/OfficePropertyCounts";
+
+                var response = await _httpClient.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                var jsonString = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<OfficePropertyCountDTO>>(jsonString);
+            }catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<List<GetOfficeListResponse>> GetOfficesAsync()
@@ -45,7 +58,7 @@ namespace RealStatesApp.Services
             try
             {
                 // Adjust the URL to where your actual API endpoint is located
-                var response = await _httpClient.GetAsync("https://localhost:7074/SalesOffices");
+                var response = await _httpClient.GetAsync($"{_baseUrl}/SalesOffices");
 
                 if (response.IsSuccessStatusCode)
                 {

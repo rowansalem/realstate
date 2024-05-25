@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Android.Telephony.Data;
+using Newtonsoft.Json;
 using RealStatesApp.Models;
 using RealStatesApp.Services.Employee.Contracts;
 using RealStatesApp.Services.SalesOffice.Contracts;
@@ -13,15 +14,19 @@ namespace RealStatesApp.Services.Employee
     public class EmployeesService : IEmployeesService
     {
         private readonly HttpClient _httpClient;
+        private readonly string _baseUrl;
 
-        public EmployeesService(HttpClient httpClient)
+        public EmployeesService(AppSettings appSettings)
         {
-            _httpClient = httpClient;
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+            _httpClient = new HttpClient(handler);
+            _baseUrl = appSettings.BaseUrl;
         }
 
         public async Task<List<EmployeeDTO>> GetEmployeesAsync()
         {
-            var response = await _httpClient.GetAsync($"https://localhost:44338/Employee");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Employee");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var employees = JsonConvert.DeserializeObject<DataListApiResult<EmployeeDTO>>(content);
@@ -30,7 +35,7 @@ namespace RealStatesApp.Services.Employee
 
         public async Task<EmployeeDTO?> GetEmployeeByIdAsync(Guid id)
         {
-            var response = await _httpClient.GetAsync($"https://localhost:44338/Employee/{id}");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Employee/{id}");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var employee = JsonConvert.DeserializeObject<DataApiResult<EmployeeDTO>>(content);
@@ -40,7 +45,7 @@ namespace RealStatesApp.Services.Employee
         public async Task<bool?> CreateEmployeeAsync(EmployeeDTO employee)
         {
             var employeeJson = JsonConvert.SerializeObject(employee);
-            var response = await _httpClient.PostAsync($"https://localhost:44338/Employee", new StringContent(employeeJson, Encoding.UTF8, "application/json"));
+            var response = await _httpClient.PostAsync($"{_baseUrl}/Employee", new StringContent(employeeJson, Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var createdEmployee = JsonConvert.DeserializeObject<ApiResult<EmployeeDTO>>(content);
@@ -50,7 +55,7 @@ namespace RealStatesApp.Services.Employee
         public async Task<bool?> UpdateEmployeeAsync(EmployeeDTO employee)
         {
             var employeeJson = JsonConvert.SerializeObject(employee);
-            var response = await _httpClient.PutAsync($"https://localhost:44338/Employee/{employee.Id}", new StringContent(employeeJson, Encoding.UTF8, "application/json"));
+            var response = await _httpClient.PutAsync($"{_baseUrl}/Employee/{employee.Id}", new StringContent(employeeJson, Encoding.UTF8, "application/json"));
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var updatedEmployee = JsonConvert.DeserializeObject<ApiResult<EmployeeDTO>>(content);
@@ -60,7 +65,7 @@ namespace RealStatesApp.Services.Employee
 
         public async Task<bool?> DeleteEmployeeAsync(Guid id)
         {
-            var response = await _httpClient.DeleteAsync($"https://localhost:44338/Employee/{id}");
+            var response = await _httpClient.DeleteAsync($"{_baseUrl}/Employee/{id}");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var deletedEmployee = JsonConvert.DeserializeObject<ApiResult<EmployeeDTO>>(content);

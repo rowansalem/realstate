@@ -13,15 +13,20 @@ namespace RealStatesApp.Services.SalesOffice
     public class SalesOfficeService : ISalesOfficeService
     {
         private readonly HttpClient _httpClient;
+        private readonly string _baseUrl;
 
-        public SalesOfficeService(HttpClient httpClient)
+        public SalesOfficeService(AppSettings appSettings)
         {
-            _httpClient = httpClient;
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+            _httpClient = new HttpClient(handler);
+            _baseUrl = appSettings.BaseUrl;
+
         }
 
         public async Task<List<SalesOfficeDTO>> GetSalesOfficesListAsync()
         {
-            var response = await _httpClient.GetAsync($"https://localhost:44338/SalesOffices");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/SalesOffices");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var SalesOffices = JsonConvert.DeserializeObject<DataListApiResult<SalesOfficeDTO>>(content);
